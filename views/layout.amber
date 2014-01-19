@@ -1,0 +1,43 @@
+doctype 5
+
+html[lang="en"]
+	head
+		meta[charset="utf-8"]
+		meta[name="viewport"][content="width=device-width,user-scalable=no,maximum-scale=1"]
+		title Goes - Articles relating to Golang
+		link[href="/public/images/favicon.ico"][rel="shorcut icon"]
+		if IsDebug
+			link[href="/src/stylesheets/style.css"][media="all"][rel="stylesheet"][type="text/css"]
+		else
+			link[href="/public/stylesheets/all.min.css"][media="all"][rel="stylesheet"][type="text/css"]
+	body
+		header
+			.header-content
+				h1
+					a[href="/"] Goes
+				p
+					| This page collects articles relating to <a href="http://golang.org/">Golang</a> from <a href="https://twitter.com/">Twitter</a> automatically and shows them.
+		section
+			.body-content
+				block content
+		footer
+			.footer-content
+				p
+					| Created by
+					a[href="https://twitter.com/_yosssi"] Keiji Yoshida
+				p
+					| Powered by
+					a[href="http://golang.org/"] Go
+					| #{Version}
+				p
+					| GitHub: <a href="https://github.com/yosssi/goesjp">goesjp</a> <a href="https://github.com/yosssi/goes">goes</a>
+		if !IsDebug
+			script
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)
+				},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				ga('create', 'UA-47281792-1', 'goes.jp');
+				ga('send', 'pageview');

@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	ul.links
+		each $link in Links
+			li
+				h3
+					.url ? $link.Title == $link.Url
+					a[href=$link.Url] #{$link.Title}
+				p.url
+					a[href=$link.Url] #{$link.Url}
+				p.timestamp #{$link.UpdatedAt}
