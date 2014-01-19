@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"github.com/drone/routes"
 	"github.com/eknkc/amber"
-	goes "github.com/yosssi/goes"
 	"github.com/yosssi/goesjp/consts"
 	"github.com/yosssi/gologger"
 	"github.com/yosssi/goutils"
@@ -19,6 +18,15 @@ import (
 	"strings"
 	"time"
 )
+
+type Link struct {
+	Id           bson.ObjectId `bson:"_id"`
+	Url          string        `bson:"Url"`
+	Title        string        `bson:"Title"`
+	ErrorMessage string        `bson:"ErrorMessage"`
+	CreatedAt    time.Time     `bson:"CreatedAt"`
+	UpdatedAt    time.Time     `bson:"UpdatedAt"`
+}
 
 var (
 	loggerYaml map[string]string = make(map[string]string)
@@ -96,7 +104,7 @@ func top(w http.ResponseWriter, r *http.Request) {
 	defer session.Close()
 	session.SetMode(mgo.Monotonic, true)
 	c := session.DB(mgoYaml["Db"]).C("links")
-	links := make([]goes.Link, 0)
+	links := make([]Link, 0)
 	err = c.Find(bson.M{"Title": bson.M{"$ne": ""}, "ErrorMessage": ""}).Sort("-UpdatedAt").All(&links)
 	render(w, "./views/top.amber", map[string]interface{}{
 		"IsDebug": isDebug(),
