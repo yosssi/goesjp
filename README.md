@@ -1,0 +1,4 @@
+goesjp
+======
+
+Go news website
